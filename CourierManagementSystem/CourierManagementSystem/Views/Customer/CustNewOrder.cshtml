@@ -1,0 +1,115 @@
+﻿@model CourierManagementSystem.Models.Product
+@{
+    ViewBag.Title = "CustNewOrder";
+    Layout = "~/Views/Shared/_customer.cshtml";
+}
+
+<div class="patientprofile">
+    <div class="d-flex justify-content-center align-items-center container ">
+        <div class="col-md-8 donor">
+            <h1 class="text-white bg-dark text-center">
+                Delivery Form
+            </h1>
+
+            <h2> Product Information</h2><br>
+
+            <form action="" method="post">
+                <table>
+
+                    <select class="form-control" name="ProductCategory">
+                        <option selected hidden>Select a Category</option>
+                        <option value="0">Document</option>
+                        <option value="1">Package</option>
+                        <option value="2">Accessories</option>
+                        <option value="3">Electronics</option>
+                        <option value="3">Groceries</option>
+                        <option value="3">Others</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ProductCategory, "", new { @class = "text-danger" })
+                    <br>
+
+
+                    <input type="textarea" class="form-control" name="description" placeholder="Describe the product">
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    <br>
+                    <br>
+
+
+                    <select class="form-control" name="paymentmethod">
+                        <option selected hidden>Select Payment Method</option>
+                        <option value="0">Bkash</option>
+                        <option value="1">Rocket</option>
+                        <option value="2">Nexus</option>
+                        <option value="3">Cash on deliver</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
+                    <br>
+
+                    <select class="form-control" name="productType">
+                        <option selected hidden>Select size</option>
+                        <option value="0">Extra Large</option>
+                        <option value="1">Large</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Small</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ProductType, "", new { @class = "text-danger" })
+                    <br>
+
+
+                    <select id="sid" class="form-control" name="sending_B_id">
+                        <option selected hidden>Select Sending Branch</option>
+                        @foreach (var item in ViewData["branches"] as List<CourierManagementSystem.Models.Branch>)
+                        {
+                            <option value="@item.Id">@item.Branch_Name</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Sending_B_id, "", new { @class = "text-danger" })
+                    <br>
+
+                    <h2>Receiver Information</h2>
+
+
+                    <input type="text" class="form-control" name="RecieverName" ; placeholder="Full Name" required>
+                    @Html.ValidationMessageFor(model => model.RecieverName, "", new { @class = "text-danger" })
+                    <br>
+
+
+
+
+                    <input type="text" class="form-control" name="RecieverContact" placeholder="Contact Number" required>
+                    @Html.ValidationMessageFor(model => model.RecieverContact, "", new { @class = "text-danger" })
+                    <br>
+
+
+
+
+                    <input type="text" class="form-control" name="RecieverEmail" placeholder="Email">
+                    @Html.ValidationMessageFor(model => model.RecieverEmail, "", new { @class = "text-danger" })
+                    <br>
+
+
+
+
+                    <input type="text" class="form-control" name="RecieverAddress" placeholder="Address" required>
+                    @Html.ValidationMessageFor(model => model.RecieverAddress, "", new { @class = "text-danger" })
+                    <br>
+
+
+
+                    <select class="form-control" name="Receiving_B_id">
+                        <option selected hidden>Select Receiving Branch</option>
+                        @foreach (var item in ViewData["branches"] as List<CourierManagementSystem.Models.Branch>)
+                        {
+                            <option value="@item.Id">@item.Branch_Name</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Receiving_B_id, "", new { @class = "text-danger" })
+                    <br>
+
+                    <input type="submit" class="btn btn-primary" name="newdelivery" value="Confirm Delivery">
+
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

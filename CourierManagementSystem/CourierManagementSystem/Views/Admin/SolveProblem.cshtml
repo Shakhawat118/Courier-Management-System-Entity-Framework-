@@ -1,0 +1,40 @@
+﻿@model IEnumerable < CourierManagementSystem.Models.Employee_Problems>
+@{
+    ViewBag.Title = "SolveProblem";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+
+<div class="donorlist">
+
+    <h1 class="text-white bg-dark text-center">
+        Worker's Problem
+    </h1><br>
+    <div class="row ">
+
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <td>Employee Name</td>
+                    <td>Branch</td>
+                    <td>Problem</td>
+                    <td>Updated Date</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <div class="col-md-8">
+                    @foreach(var item in Model)
+                    {
+                    <tr>
+                        <td>@item.User.Employee.Name</td>
+                        <td>@item.Branch.Branch_Name</td>
+                        <td>@item.Problem</td>
+                        <td>@item.UpdatedDate</td>
+                        <td>@Html.ActionLink("View", "ViewProblem", new { id = item.Id }, new { @class = "btn btn-warning" })</td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+</div>

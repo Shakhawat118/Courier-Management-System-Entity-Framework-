@@ -1,0 +1,30 @@
+﻿@model CourierManagementSystem.Models.Employee_Problems
+@{
+    ViewBag.Title = "ViewProblem";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+<div class="patientprofile">
+    <div class="d-flex justify-content-center align-items-center container ">
+        <div class="col-md-8 donor">
+            <h1 class="text-white bg-dark text-center">
+                View Problem Details
+            </h1>
+            <form action="" method="post">
+                <div class="form-group">
+                    <label>@Model.Problem</label>
+                </div>
+                <div class="form-group">
+                    <label>Solve the problem Now?:</label>
+                </div>
+                <div class="form-group">
+                    <a href="/admin/solveproblem" class="btn btn-warning">Cancel</a>
+                    <input type="submit" class="btn btn-danger" value="Delete" name="delete" id="">
+                    <input type="submit" class="btn btn-success" value="Yes" name="yes" id="">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+

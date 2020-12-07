@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "CustServiceHistory";
+    Layout = "~/Views/Shared/_customer.cshtml";
+}
+
+<h1 class="text-white bg-dark text-center">
+    All released Products
+</h1>
+<br>
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <select class="form-control" name="searchby" id="searchby">
+                <option value="4" disabled>Search By</option>
+                <option value="4">Receiever Name</option>
+                <option value="5">Receiver Contact</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-8 donor">
+        <input type="text" value="" id="see" hidden/>
+        <input type="text" name="search" id="search" placeholder="Search Customers ">
+    </div>
+</div>
+<br>
+
+<div class="row ">
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <td>Sending Branch</td>
+                <td>Receiving Branch</td>
+                <td>Sending Date</td>
+                <td>Reciever Name</td>
+                <td>Address</td>
+                <td>Released Date</td>
+            </tr>
+        </thead>
+        <tbody id="suggestion">
+            <div class="col-md-8">
+                @foreach (var item in Model)
+                {
+                    if ((item.Product_State == 4) && item.Customer_id == (int)Session["uid"])
+                    {
+                        <tr>
+                            <td>@item.Branch.Branch_Name</td>
+                            <td>@item.Branch1.Branch_Name</td>
+                            <td>@item.UpdatedDate</td>
+                            <td>@item.RecieverName</td>
+                            <td>@item.RecieverAddress</td>
+                            @if (item.Product_State == 4)
+                            {
+                                <td>Released</td>
+                            }
+                        </tr>
+                    }
+                }
+            </div>
+        </tbody>
+    </table>
+</div>
+

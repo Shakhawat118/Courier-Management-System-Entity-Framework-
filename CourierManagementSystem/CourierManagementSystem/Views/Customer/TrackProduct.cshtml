@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CourierManagementSystem.Models.Product>
+@{
+    ViewBag.Title = "TrackProduct";
+    Layout = "~/Views/Shared/_customer.cshtml";
+}
+
+<div class="donorlist">
+
+    <h1 class="text-white bg-dark text-center">
+        Pending Products
+    </h1><br>
+
+    <div class="row ">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Sending Branch</td>
+                    <td>Receiving Branch</td>
+                    <td>Sending Date</td>
+                    <td>Reciever Name</td>
+                    <td>Address</td>
+                    <td>Product State</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <div class="col-md-8">
+                    @foreach (var item in Model)
+                    {
+                        if ((item.Product_State == 0 || item.Product_State == 1) && item.Customer_id == (int)Session["uid"])
+                        {
+                            <tr>
+                                <td>@item.Branch.Branch_Name</td>
+                                <td>@item.Branch1.Branch_Name</td>
+                                <td>@item.UpdatedDate</td>
+                                <td>@item.RecieverName</td>
+                                <td>@item.RecieverAddress</td>
+                                @if (item.Product_State == 0)
+                                {
+                                    <td>Not Yet Received at the Branch</td>
+                                }
+                                else
+                                {
+                                    <td>Ready For Shipping</td>
+                                }
+                                <td><a href="/employee/cancel/@item.Id" class="btn btn-danger">Cancel</a></td>
+                            </tr>
+                        }
+                    }
+                </div>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br>
+<br>
+<h1 class="text-white bg-dark text-center">
+    Shipped Products
+</h1>
+<br>
+
+<div class="row ">
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <td>Sending Branch</td>
+                <td>Receiving Branch</td>
+                <td>Sending Date</td>
+                <td>Reciever Name</td>
+                <td>Address</td>
+                <td>Product State</td>
+            </tr>
+        </thead>
+        <tbody>
+            <div class="col-md-8">
+                @foreach (var item in Model)
+                {
+                    if ((item.Product_State == 2 || item.Product_State == 3) && item.Customer_id == (int)Session["uid"])
+                    {
+                        <tr>
+                            <td>@item.Branch.Branch_Name</td>
+                            <td>@item.Branch1.Branch_Name</td>
+                            <td>@item.UpdatedDate</td>
+                            <td>@item.RecieverName</td>
+                            <td>@item.RecieverAddress</td>
+                            @if (item.Product_State == 2)
+                            {
+                                <td>On the Way to the Destination Branch</td>
+                            }
+                            else
+                            {
+                                <td>Received At the Desntination Branch</td>
+                            }
+                        </tr>
+                    }
+                }
+            </div>
+        </tbody>
+    </table>
+</div>
+
